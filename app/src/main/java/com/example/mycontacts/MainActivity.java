@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setSubtitle(DATABASE_VERSION);
+
 
         //Start DbHandler
         DBHandler dbHandler = new DBHandler(this, null);
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_Home:
-                intent = new Intent(this, CreateContact.class);
+                intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.action_create_list:
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openCreateList(View view) {
-        intent = new Intent(this, CreateContact.class);
+        intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

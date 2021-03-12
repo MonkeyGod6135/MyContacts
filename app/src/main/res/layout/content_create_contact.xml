@@ -30,8 +30,7 @@
                 android:layout_height="wrap_content"
                 android:width="300dp"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
         </TableRow>
 
         <TableRow
@@ -50,8 +49,7 @@
                 android:layout_height="wrap_content"
                 android:width="300dp"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
         </TableRow>
 
         <TableRow
@@ -70,8 +68,7 @@
                 android:layout_height="wrap_content"
                 android:width="300dp"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
         </TableRow>
 
     </TableLayout>

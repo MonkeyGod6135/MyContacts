@@ -20,11 +20,11 @@ public class ShoppingLists extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        ((TextView) view.findViewById(R.id.nameEditText)).
+        ((TextView) view.findViewById(R.id.nameTextView)).
                 setText(cursor.getString(cursor.getColumnIndex("name")));
         ((TextView) view.findViewById(R.id.emailTextView)).
                 setText(cursor.getString(cursor.getColumnIndex("email")));
-        ((TextView) view.findViewById(R.id.phoneEditText)).
+        ((TextView) view.findViewById(R.id.phoneTextView)).
                 setText(cursor.getString(cursor.getColumnIndex("phone")));
 
     }

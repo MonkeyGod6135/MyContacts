@@ -36,9 +36,11 @@ public class CreateContact extends AppCompatActivity {
         nameEditText = (EditText) findViewById(R.id.nameEditText);
         emailEditText = (EditText) findViewById(R.id.emailEditText);
         phoneEditText = (EditText) findViewById(R.id.phoneEditText);
+
+        dbHandler = new DBHandler(this,null);
     }
 
-    public void createContact(MenuItem menuItem) {
+    public boolean createContact(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_create_contact, menu);
 
@@ -48,7 +50,7 @@ public class CreateContact extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_Home:
-                intent = new Intent(this, CreateContact.class);
+                intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.action_create_list:
@@ -60,23 +62,24 @@ public class CreateContact extends AppCompatActivity {
 
 
         }
-        public void CreateContact(MenuItem menuItem){
-            //get data input in EditTexts and store into strings
-            String name = nameEditText.getText().toString();
-            String email = emailEditText.getText().toString();
-            String phone = phoneEditText.getText().toString();
 
-            if (name.trim().equals("") || email.trim().equals("") || phone.trim().equals("")) {
-                Toast.makeText(this, "Please enter name, Email, and Phone Number!",
-                        Toast.LENGTH_LONG).show();
-            } else {
-                dbHandler.addContact(name, email, phone);
+    }
+    public void CreateContact(MenuItem menuItem){
+        //get data input in EditTexts and store into strings
+        String name = nameEditText.getText().toString();
+        String email = emailEditText.getText().toString();
+        String phone = phoneEditText.getText().toString();
 
-                Toast.makeText(this, "Contact Created!",
-                        Toast.LENGTH_LONG).show();
+        if (name.trim().equals("") || email.trim().equals("") || phone.trim().equals("")) {
+            Toast.makeText(this, "Please enter name, Email, and Phone Number!",
+                    Toast.LENGTH_LONG).show();
+        } else {
+            dbHandler.addContact(name, email, phone);
 
-            }
+            Toast.makeText(this, "Contact Created!",
+                    Toast.LENGTH_LONG).show();
 
         }
+
     }
 }

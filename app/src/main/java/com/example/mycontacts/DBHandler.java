@@ -38,9 +38,9 @@ public class DBHandler extends SQLiteOpenHelper {
         //define create statement for shopping list and store it in a string
         String query = "CREATE TABLE " + TABLE_SHOPPING_LIST + "( " +
                 COLUMN_LIST_ID + "INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_LIST_NAME+ "text, " +
-                COLUMN_LIST_EMAIL+ "text, " +
-                COLUMN_LIST_PHONE+ "text); ";
+                COLUMN_LIST_NAME+ " TEXT, " +
+                COLUMN_LIST_EMAIL+ " TEXT, " +
+                COLUMN_LIST_PHONE+ " TEXT); ";
 
         //execute the statement
         sqLiteDatabase.execSQL(query);
@@ -62,8 +62,6 @@ public class DBHandler extends SQLiteOpenHelper {
 
         //execute statement
         sqLiteDatabase.execSQL(query);
-
-        onCreate(sqLiteDatabase);
 
     }
 
