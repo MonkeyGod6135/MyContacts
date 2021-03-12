@@ -7,5 +7,11 @@
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="phone_number">Phone Number :</string>
-
+    <string name="view_family">View Family</string>
+    <string name="view_friends">View Friends</string>
+    <string-array name="group">
+    <item></item>
+    <item>Friends</item>
+    <item>Faimly</item>
+    </string-array>
 </resources>

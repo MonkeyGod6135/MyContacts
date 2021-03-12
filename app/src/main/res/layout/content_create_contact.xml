@@ -69,6 +69,24 @@
                 android:width="300dp"
                 android:ems="10"
                 android:inputType="textPersonName" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/groupTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Group" />
+
+            <Spinner
+                android:id="@+id/qroupSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown" />
         </TableRow>
 
     </TableLayout>
