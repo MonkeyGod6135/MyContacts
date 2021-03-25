@@ -10,7 +10,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //intialize constants for db name and version
     public static final String DATABASE_NAME = "Shopper.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
 
     //Intilizes constants for the shopperinglist table
     public static final String TABLE_SHOPPING_LIST = "Contact";
