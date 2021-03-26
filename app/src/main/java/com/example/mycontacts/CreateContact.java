@@ -12,11 +12,14 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class CreateContact extends AppCompatActivity {
-
+//declare intent
     Intent intent;
 
     //declare edittexts
@@ -24,7 +27,14 @@ public class CreateContact extends AppCompatActivity {
     EditText emailEditText;
     EditText phoneEditText;
 
+//declare Dbhandler
     DBHandler dbHandler;
+
+    //declare spinner
+    Spinner groupSpinner;
+
+    // declare Strings to store year and major selected in Spinners
+    String Group;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +43,32 @@ public class CreateContact extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //start edit texts
         nameEditText = (EditText) findViewById(R.id.nameEditText);
         emailEditText = (EditText) findViewById(R.id.emailEditText);
         phoneEditText = (EditText) findViewById(R.id.phoneEditText);
 
+        //start dbhanlder
         dbHandler = new DBHandler(this,null);
+
+        // initialize Spinners
+        groupSpinner = (Spinner) findViewById(R.id.qroupSpinner);
+
+        // initialize ArrayAdapters with values in year and major string arrays
+        // and stylize them with style defined by simple_spinner_item
+        ArrayAdapter<CharSequence> groupAdapter = ArrayAdapter.createFromResource(this,
+                R.array.group, android.R.layout.simple_spinner_item);
+
+        // further stylize ArrayAdapters with style defined by simple_spinner_dropdown_item
+        groupAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+
+        // set ArrayAdapters on Spinners
+        groupSpinner.setAdapter(groupAdapter);
+
+
+        // register On Item Selected Listener to Spinners
+        groupSpinner.setOnItemSelectedListener(this);
+
     }
 
     public boolean createContact(Menu menu) {
@@ -70,16 +101,33 @@ public class CreateContact extends AppCompatActivity {
         String email = emailEditText.getText().toString();
         String phone = phoneEditText.getText().toString();
 
-        if (name.trim().equals("") || email.trim().equals("") || phone.trim().equals("")) {
-            Toast.makeText(this, "Please enter name, Email, and Phone Number!",
+        if (name.trim().equals("") || email.trim().equals("") || group.trim().equals("") ||phone.trim().equals("")) {
+            Toast.makeText(this, "Please enter name, Email, Group, and Phone Number!",
                     Toast.LENGTH_LONG).show();
         } else {
-            dbHandler.addContact(name, email, phone);
+            dbHandler.addContact(name, email, group,phone);
 
             Toast.makeText(this, "Contact Created!",
                     Toast.LENGTH_LONG).show();
 
         }
 
+    }
+    /**
+     * This method gets called when an item in one of the Spinners is selected.
+     * @param parent Spinner AdapterView
+     * @param view MainActivity view
+     * @param position position of item in Spinner that was selected
+     * @param id database id of item in Spinner that was selected
+     */
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // get the id of the Spinner that called method
+        switch (parent.getId()) {
+            case R.id.groupSpinner:
+                // get the item selected in the Spinner and store it in String
+                group = parent.getItemAtPosition(position).toString();
+                break;
+
+        }
     }
 }

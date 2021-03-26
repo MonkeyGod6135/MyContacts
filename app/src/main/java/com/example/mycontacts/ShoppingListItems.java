@@ -8,16 +8,35 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-public class ShoppingLists extends CursorAdapter {
-    public ShoppingLists(Context context, Cursor c, int flags) {
+public class ShoppingListItems extends CursorAdapter {
+    /**
+     *
+     * @param context reference to the activity that initializes the shoppinglistitem cursoradapter
+     * @param c reference to the cursor that contains the data selected
+     * @param flags determines special behavior of the cursoradapter
+     */
+    public ShoppingListItems(Context context, Cursor c, int flags) {
         super(context, c, flags);
     }
 
+    /**
+     *
+     * @param context reference to the activity that initializes the shoppinglistitem cursoradapter
+     * @param cursor reference to the cursor that contains the data selected
+     * @param parent reference
+     * @return
+     */
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.li_shopping_list,parent,false);
+        return LayoutInflater.from(context).inflate(R.layout.li_item_list,parent,false);
     }
 
+    /**
+     * Bind new view to data in cursor
+     * @param view reference to view
+     * @param context
+     * @param cursor
+     */
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         ((TextView) view.findViewById(R.id.nameTextView)).

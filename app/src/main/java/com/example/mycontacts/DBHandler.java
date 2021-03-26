@@ -18,6 +18,16 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_LIST_NAME = "name";
     public static final String COLUMN_LIST_EMAIL = "email";
     public static final String COLUMN_LIST_PHONE = "phone";
+    public static final String COLUMN_LIST_GROUP = "group";
+
+    //Intilizes constants for the shopperinglistitem table
+    public static final String TABLE_SHOPPING_LIST_ITEM = "shoppinglistitem";
+    public static final String COLUMN_ITEM_ID = "_id";
+    public static final String COLUMN_ITEM_NAME = "name";
+    public static final String COLUMN_ITEM_EMAIL = "email";
+    public static final String COLUMN_ITEM_PHONE = "phone";
+    public static final String COLUMN_ITEM_GROUP = "group";
+    public static final String COLUMN_ITEM_LIST_ID = "list_id";
 
 
     /**
@@ -38,13 +48,25 @@ public class DBHandler extends SQLiteOpenHelper {
         //define create statement for shopping list and store it in a string
         String query = "CREATE TABLE " + TABLE_SHOPPING_LIST + "( " +
                 COLUMN_LIST_ID + "INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_LIST_NAME+ " TEXT, " +
-                COLUMN_LIST_EMAIL+ " TEXT, " +
-                COLUMN_LIST_PHONE+ " TEXT); ";
+                COLUMN_LIST_NAME + " TEXT, " +
+                COLUMN_LIST_EMAIL + " TEXT, " +
+                COLUMN_LIST_GROUP + " TEXT, " +
+                COLUMN_LIST_PHONE + " TEXT); ";
 
         //execute the statement
         sqLiteDatabase.execSQL(query);
 
+        //define create statement for shopping list and store it in a string
+        String query2 = "CREATE TABLE " + TABLE_SHOPPING_LIST_ITEM + "(" +
+                COLUMN_ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_ITEM_NAME + " TEXT, " +
+                COLUMN_ITEM_EMAIL + " TEXT, " +
+                COLUMN_ITEM_PHONE + " TEXT, " +
+                COLUMN_ITEM_GROUP + " TEXT, " +
+                COLUMN_ITEM_LIST_ID + " INTEGER);";
+
+        //execute the statement
+        sqLiteDatabase.execSQL(query2);
 
     }
 
@@ -70,7 +92,7 @@ public class DBHandler extends SQLiteOpenHelper {
      * gets clicked and makes a new row into the shopping list table
      */
     public void addContact(String name, String email, String phone){
-        //refernce to database
+        //reference to database
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -79,6 +101,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_LIST_NAME, name);
         values.put(COLUMN_LIST_EMAIL, email);
         values.put(COLUMN_LIST_PHONE, phone);
+        values.put(COLUMN_LIST_GROUP, group);
 
         //insert data in Content values into shopping list table
         db.insert(TABLE_SHOPPING_LIST, null, values);
