@@ -124,5 +124,27 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
     }
+    public void deleteShoppingList(Integer listId){
+
+        //reference to database
+        SQLiteDatabase db = getWritableDatabase();
+
+        //define in string
+        String query1 = "DELETE FROM " + TABLE_SHOPPING_LIST_ITEM +
+                "WHERE " + COLUMN_ITEM_LIST_ID + " = " + listId;
+
+        //execute
+        db.execSQL(query1);
+
+        //Define in string
+        String query2 = "DELETE FROM " + TABLE_SHOPPING_LIST +
+                "WHERE " + COLUMN_LIST_ID + " = " + listId;
+
+        //execute
+        db.execSQL(query2);
+
+        db.close();
+
+    }
 
 }
