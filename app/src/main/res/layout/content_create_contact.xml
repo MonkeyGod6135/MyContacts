@@ -60,7 +60,7 @@
                 android:id="@+id/phoneTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/phone_number" />
+                android:text="Phone Number:" />
 
             <EditText
                 android:id="@+id/phoneEditText"
@@ -68,7 +68,8 @@
                 android:layout_height="wrap_content"
                 android:width="300dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textSize="18sp" />
 
         </TableRow>
 
@@ -80,12 +81,14 @@
                 android:id="@+id/groupTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Group" />
+                android:text="Group"
+                android:textSize="18sp" />
 
             <Spinner
                 android:id="@+id/qroupSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:entries="@array/group"
                 android:spinnerMode="dropdown" />
         </TableRow>
 

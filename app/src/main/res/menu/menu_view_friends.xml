@@ -13,15 +13,4 @@
         android:orderInCategory="2"
         android:title="@string/action_create_contact"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/View_Family"
-        android:orderInCategory="3"
-        android:title="@string/view_family"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/View_Friends"
-        android:orderInCategory="4"
-        android:title="@string/view_friends"
-        app:showAsAction="never" />
 </menu>

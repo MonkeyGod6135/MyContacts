@@ -18,8 +18,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class CreateContact extends AppCompatActivity {
-//declare intent
+public class CreateContact extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    //declare intent
     Intent intent;
 
     //declare edittexts
@@ -34,7 +34,7 @@ public class CreateContact extends AppCompatActivity {
     Spinner groupSpinner;
 
     // declare Strings to store year and major selected in Spinners
-    String Group;
+    String group;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +71,11 @@ public class CreateContact extends AppCompatActivity {
 
     }
 
-    public boolean createContact(Menu menu) {
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_create_contact, menu);
-
         return true;
     }
 
@@ -95,17 +96,17 @@ public class CreateContact extends AppCompatActivity {
         }
 
     }
-    public void CreateContact(MenuItem menuItem){
+    public void createContact(MenuItem menuItem){
         //get data input in EditTexts and store into strings
         String name = nameEditText.getText().toString();
         String email = emailEditText.getText().toString();
         String phone = phoneEditText.getText().toString();
 
-        if (name.trim().equals("") || email.trim().equals("") || group.trim().equals("") ||phone.trim().equals("")) {
+        if (name.trim().equals("") || email.trim().equals("") || group.trim().equals("") || phone.trim().equals("")) {
             Toast.makeText(this, "Please enter name, Email, Group, and Phone Number!",
                     Toast.LENGTH_LONG).show();
         } else {
-            dbHandler.addContact(name, email, group,phone);
+            dbHandler.addContact(name, email, group ,phone);
 
             Toast.makeText(this, "Contact Created!",
                     Toast.LENGTH_LONG).show();
@@ -120,14 +121,17 @@ public class CreateContact extends AppCompatActivity {
      * @param position position of item in Spinner that was selected
      * @param id database id of item in Spinner that was selected
      */
+    @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // get the id of the Spinner that called method
-        switch (parent.getId()) {
-            case R.id.groupSpinner:
                 // get the item selected in the Spinner and store it in String
                 group = parent.getItemAtPosition(position).toString();
-                break;
 
-        }
+
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

@@ -8,14 +8,14 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-public class ShoppingLists extends CursorAdapter {
-    public ShoppingLists(Context context, Cursor c, int flags) {
+public class FamilyContacts extends CursorAdapter {
+    public FamilyContacts(Context context, Cursor c, int flags) {
         super(context, c, flags);
     }
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.li_shopping_list,parent,false);
+        return LayoutInflater.from(context).inflate(R.layout.li_view_family_list,parent,false);
     }
 
     @Override
@@ -26,8 +26,7 @@ public class ShoppingLists extends CursorAdapter {
                 setText(cursor.getString(cursor.getColumnIndex("email")));
         ((TextView) view.findViewById(R.id.phoneTextView)).
                 setText(cursor.getString(cursor.getColumnIndex("phone")));
-        ((TextView) view.findViewById(R.id.groupTextView)).
-                setText(cursor.getString(cursor.getColumnIndex("group")));
 
     }
 }
+

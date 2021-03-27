@@ -10,8 +10,12 @@
     <string name="view_family">View Family</string>
     <string name="view_friends">View Friends</string>
     <string-array name="group">
-    <item></item>
-    <item>Friends</item>
-    <item>Family</item>
+        <item></item>
+        <item>Friends</item>
+        <item>Family</item>
     </string-array>
+    <string name="title_activity_view_family">View Family</string>
+    <string name="title_activity_friends_contacts">Friends Contacts</string>
+    <string name="title_activity_view_friends">View Friends</string>
+
 </resources>

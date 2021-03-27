@@ -9,53 +9,50 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.provider.ContactsContract;
-import android.view.View;
-
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.CursorAdapter;
+import android.view.View;
 import android.widget.ListView;
 
-import static com.example.mycontacts.DBHandler.DATABASE_VERSION;
+public class ViewFamily extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity {
+    //declare DBHandler
+    DBHandler dbHandler;
 
-    //start intent
+    //declare Intent
     Intent intent;
 
-    //start dbhandler
-    DBHandler Dbhandler;
+    //declare a shopping list cursor adaptor
+    FamilyContacts familyContacts;
 
-   MyContatcs myContatcs;
+    //declare a listview
+    ListView itemListView;
 
-    //start shopperlist
-    ListView shopperListView;
-
-    /**
-     * This method intializies the action bar and view of the activity
-     * @param savedInstanceState
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_view_family);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //start dbhandler
+        dbHandler = new DBHandler(this,null);
 
-        //Start DbHandler
-        DBHandler dbHandler = new DBHandler(this, null);
 
-        shopperListView = (ListView) findViewById(R.id.shopperListView);
+        //set the sub title of the viewlist activity.
+        toolbar.setSubtitle("Family");
 
-        myContatcs = new MyContatcs(this,
-                dbHandler.getContact(),0);
+        //initialize the listview
+        itemListView = (ListView) findViewById(R.id.viewFamilyListView);
 
-        shopperListView.setAdapter(myContatcs);
+        //initialize the shoppingListItems
+        familyContacts = new FamilyContacts(this, dbHandler.getContactList( "Family"),0);
+
+        //set the shoppinglist items
+        itemListView.setAdapter(familyContacts);
+
 
     }
-
     /**
      * This method further intializes the action bar activity
      * @param menu menu resource file for the activity
@@ -64,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_view_family, menu);
         return true;
     }
 
@@ -90,10 +87,5 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
-    }
-
-    public void openCreateList(View view) {
-        intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
     }
 }
