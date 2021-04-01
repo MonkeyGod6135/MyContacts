@@ -23,7 +23,7 @@ public class ViewFriends extends AppCompatActivity {
     Intent intent;
 
     //declare a shopping list cursor adaptor
-    FamilyContacts familyContacts;
+    FriendsContacts friendsContacts;
 
     //declare a listview
     ListView itemListView;
@@ -43,13 +43,13 @@ public class ViewFriends extends AppCompatActivity {
         toolbar.setSubtitle("Friends");
 
         //initialize the listview
-        itemListView = (ListView) findViewById(R.id.viewFamilyListView);
+        itemListView = (ListView) findViewById(R.id.viewFriendsListView);
 
         //initialize the shoppingListItems
-        familyContacts = new FamilyContacts(this, dbHandler.getContactList( "Friends"),0);
+        friendsContacts = new FriendsContacts(this, dbHandler.getContactList( "Friends"),0);
 
         //set the shoppinglist items
-        itemListView.setAdapter(familyContacts);
+        itemListView.setAdapter(friendsContacts);
 
 
     }

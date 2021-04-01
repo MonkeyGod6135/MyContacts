@@ -85,6 +85,14 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, CreateContact.class);
                 startActivity(intent);
                 return true;
+            case R.id.View_Family:
+                intent = new Intent(this, ViewFamily.class);
+                startActivity(intent);
+                return true;
+            case R.id.View_Friends:
+                intent = new Intent(this, ViewFriends.class);
+                startActivity(intent);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
 

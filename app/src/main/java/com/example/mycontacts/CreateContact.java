@@ -106,7 +106,7 @@ public class CreateContact extends AppCompatActivity implements AdapterView.OnIt
             Toast.makeText(this, "Please enter name, Email, Group, and Phone Number!",
                     Toast.LENGTH_LONG).show();
         } else {
-            dbHandler.addContact(name, email, group ,phone);
+            dbHandler.addContact(name, email, phone ,group);
 
             Toast.makeText(this, "Contact Created!",
                     Toast.LENGTH_LONG).show();
