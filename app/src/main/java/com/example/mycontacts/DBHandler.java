@@ -19,6 +19,8 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_LIST_EMAIL = "email";
     public static final String COLUMN_LIST_PHONE = "phone";
     public static final String COLUMN_LIST_GROUP = "group_name";
+    public static final String COLUMN_LIST_CONTACT_ID = "list_id";
+    public static final String COLUMN_LIST_HAS = "item_has";
 
 
 
@@ -124,7 +126,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
     }
-    public void deleteList(Integer listId){
+    public void deleteContact(Integer listId){
 
         //reference to database
         SQLiteDatabase db = getWritableDatabase();
@@ -136,6 +138,26 @@ public class DBHandler extends SQLiteOpenHelper {
 
         //execute
         db.execSQL(query2);
+
+        db.close();
+
+    }
+
+    /**
+     * This method is called when an item on the view family or view friends is
+     * @param itemId database id of a clicked item
+     */
+    public void updateContact(Integer itemId){
+
+        //reference to database
+        SQLiteDatabase db = getWritableDatabase();
+
+        //define update statement
+        String query = "UPDATE " + TABLE_SHOPPING_LIST + " SET " + " WHERE " +
+                COLUMN_LIST_ID + " = " + itemId;
+
+        //execute
+        db.execSQL(query);
 
         db.close();
 

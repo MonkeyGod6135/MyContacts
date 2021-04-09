@@ -12,7 +12,9 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class ViewFriends extends AppCompatActivity {
 
@@ -51,6 +53,31 @@ public class ViewFriends extends AppCompatActivity {
         //set the shoppinglist items
         itemListView.setAdapter(friendsContacts);
 
+        //register an OnItemClickListener on the viewFamily
+        itemListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            /**
+             * This method is called when an item on the listview is called
+             * @param parent itemListView
+             * @param view View contact view
+             * @param position of clicked item
+             * @param id database id of the clicked item
+             */
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                updateContact(id);
+
+                //start an intent
+                intent = new Intent(ViewFriends.this, ViewContact.class);
+
+                //put the database id of the clicked item
+                intent.putExtra("_id",id);
+
+                //start activity
+                startActivity(intent);
+            }
+        });
+
 
     }
     /**
@@ -88,4 +115,12 @@ public class ViewFriends extends AppCompatActivity {
 
         }
     }
+
+    public void updateContact(long id){
+        dbHandler.updateContact((int)id);
+
+        //refresh listview with updated data
+
+    }
+
 }
